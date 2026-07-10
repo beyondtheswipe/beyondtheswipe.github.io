@@ -3,28 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond the Swipe</title>
+    <title>My Website</title>
+
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            color: #333;
         }
-        h1 {
-            font-size: 3rem;
-            text-align: center;
+
+        /* Header containing the logo and website name */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;              /* Space between logo and text */
+            padding: 40px 0;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 0;
         }
     </style>
 </head>
+
 <body>
-    <h1>Beyond the Swipe</h1>
-    
-    <h2>test test</h2>
+
+    <div class="header">
+        <img src="images/logo.png" alt="Website Logo" class="logo">
+        <h1 class="title">Beyond the Swipe</h1>
+    </div>
+
 </body>
 </html>
-
