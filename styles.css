@@ -322,13 +322,18 @@ img {
 }
 
 .quote-section {
+  align-items: start;
   background: linear-gradient(135deg, var(--navy), var(--plum));
+  column-gap: clamp(0.75rem, 2.5vw, 2rem);
   color: var(--paper);
   display: grid;
+  grid-template-columns: auto minmax(0, 65rem) auto;
+  justify-content: center;
   min-height: 24rem;
   overflow: hidden;
   padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 7vw, 6rem);
   position: relative;
+  row-gap: 1.5rem;
 }
 
 .quote-section::before {
@@ -341,9 +346,11 @@ img {
 }
 
 .quote-section blockquote {
+  grid-column: 2;
   margin: 0;
   max-width: 65rem;
   position: relative;
+  width: 100%;
   z-index: 1;
 }
 
@@ -371,6 +378,7 @@ img {
 }
 
 .quote-mark {
+  align-self: start;
   color: var(--gold);
   font-size: clamp(5rem, 10vw, 10rem);
   font-weight: 900;
@@ -381,31 +389,19 @@ img {
   z-index: 1;
 }
 
-.quote-end {
-  color: var(--gold);
-  display: inline-block;
-  font-size: 1.08em;
-  font-weight: 950;
-  line-height: 0;
-  margin-left: 0.08em;
-  transform: translateY(0.04em);
+.quote-close {
+  justify-self: end;
 }
 
 .quote-two {
-  align-items: center;
   background:
     linear-gradient(120deg, var(--teal), transparent 48%),
     var(--navy);
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 2rem;
-}
-
-.quote-two blockquote {
-  grid-column: 1 / -1;
 }
 
 .quote-two .outline-button {
-  grid-column: 2;
+  grid-column: 2 / 4;
+  justify-self: end;
   position: relative;
   z-index: 1;
 }
@@ -589,13 +585,15 @@ img {
     right: auto;
   }
 
+  .quote-section,
   .quote-two {
-    grid-template-columns: 1fr;
+    column-gap: 0.75rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
   }
 
   .quote-two .outline-button {
-    grid-column: 1;
-    justify-self: start;
+    grid-column: 2 / 4;
+    justify-self: end;
   }
 
   .founders-section {
@@ -643,6 +641,15 @@ img {
 
   .impact-number {
     font-size: clamp(5rem, 27vw, 8rem);
+  }
+
+  .quote-section,
+  .quote-two {
+    column-gap: 0.35rem;
+  }
+
+  .quote-mark {
+    font-size: clamp(3.75rem, 15vw, 5rem);
   }
 
   .quote-section cite {
