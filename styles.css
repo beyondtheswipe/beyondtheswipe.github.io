@@ -327,7 +327,7 @@ img {
   column-gap: clamp(0.75rem, 2.5vw, 2rem);
   color: var(--paper);
   display: grid;
-  grid-template-columns: auto minmax(0, 65rem) auto;
+  grid-template-columns: auto minmax(0, 65rem);
   justify-content: center;
   min-height: 24rem;
   overflow: hidden;
@@ -346,6 +346,7 @@ img {
 }
 
 .quote-section blockquote {
+  display: grid;
   grid-column: 2;
   margin: 0;
   max-width: 65rem;
@@ -390,6 +391,7 @@ img {
 }
 
 .quote-close {
+  margin: clamp(0.35rem, 1vw, 0.75rem) 0 clamp(0.45rem, 1.2vw, 0.85rem);
   justify-self: end;
 }
 
@@ -400,7 +402,7 @@ img {
 }
 
 .quote-two .outline-button {
-  grid-column: 2 / 4;
+  grid-column: 2;
   justify-self: end;
   position: relative;
   z-index: 1;
@@ -588,11 +590,11 @@ img {
   .quote-section,
   .quote-two {
     column-gap: 0.75rem;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .quote-two .outline-button {
-    grid-column: 2 / 4;
+    grid-column: 2;
     justify-self: end;
   }
 
