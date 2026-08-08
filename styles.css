@@ -343,6 +343,7 @@ img {
 .quote-section blockquote {
   margin: 0;
   max-width: 65rem;
+  padding-right: clamp(0rem, 12vw, 9rem);
   position: relative;
   z-index: 1;
 }
@@ -376,14 +377,16 @@ img {
   font-weight: 900;
   line-height: 0.6;
   opacity: 0.95;
+  pointer-events: none;
   position: relative;
   z-index: 1;
 }
 
 .quote-close {
-  bottom: 2rem;
+  bottom: auto;
   position: absolute;
   right: clamp(1.5rem, 5vw, 5rem);
+  top: clamp(3rem, 7vw, 6rem);
 }
 
 .quote-two {
@@ -643,6 +646,17 @@ img {
   .quote-section cite {
     justify-items: start;
     margin-left: 0;
+  }
+
+  .quote-section blockquote {
+    padding-right: 0;
+  }
+
+  .quote-close {
+    font-size: clamp(4rem, 18vw, 7rem);
+    opacity: 0.28;
+    right: 1rem;
+    top: 1.75rem;
   }
 
   .site-footer a::before {
