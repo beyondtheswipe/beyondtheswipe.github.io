@@ -381,6 +381,16 @@ img {
   z-index: 1;
 }
 
+.quote-end {
+  color: var(--gold);
+  display: inline-block;
+  font-size: 1.08em;
+  font-weight: 950;
+  line-height: 0;
+  margin-left: 0.08em;
+  transform: translateY(0.04em);
+}
+
 .quote-two {
   align-items: center;
   background:
