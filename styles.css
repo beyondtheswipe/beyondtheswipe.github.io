@@ -19,6 +19,7 @@
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -37,6 +38,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  overflow-x: hidden;
 }
 
 a {
@@ -79,6 +81,7 @@ img {
 .main-nav {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  min-width: 0;
 }
 
 .main-nav a {
@@ -142,6 +145,7 @@ img {
 
 .hero-copy {
   max-width: 49rem;
+  min-width: 0;
   position: relative;
   z-index: 1;
 }
@@ -171,6 +175,7 @@ img {
   line-height: 1.6;
   margin: 1.5rem 0 0;
   max-width: 38rem;
+  overflow-wrap: break-word;
 }
 
 .hero-visual {
@@ -562,9 +567,10 @@ img {
   }
 
   .hero-section {
+    gap: clamp(1.5rem, 4vw, 3rem);
     grid-template-columns: 1fr;
     min-height: auto;
-    padding-bottom: 7rem;
+    padding: clamp(2.25rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3rem) clamp(2rem, 6vw, 4rem);
   }
 
   .hero-section::before {
@@ -576,13 +582,21 @@ img {
     max-width: 12ch;
   }
 
+  .hero-copy {
+    order: 1;
+  }
+
   .hero-visual {
-    min-height: 22rem;
+    min-height: clamp(18rem, 45vw, 24rem);
+    order: 3;
   }
 
   .hero-cta {
-    bottom: 2rem;
-    left: 1.25rem;
+    bottom: auto;
+    justify-self: start;
+    left: auto;
+    order: 2;
+    position: static;
     right: auto;
   }
 
@@ -605,62 +619,233 @@ img {
 
   .founder-row {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 }
 
 @media (max-width: 560px) {
+  body {
+    background-size: 32px 32px;
+  }
+
+  .brand {
+    justify-content: flex-start;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .brand img {
+    width: min(72vw, 11.5rem);
+  }
+
   .main-nav {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .main-nav a,
   .main-nav a:nth-child(even),
   .main-nav a:nth-last-child(-n + 2) {
     border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    font-size: 0.88rem;
+    min-height: 2.75rem;
+    min-width: 0;
+    padding: 0.65rem 0.5rem;
+  }
+
+  .main-nav a:nth-child(even) {
     border-right: 0;
   }
 
-  .main-nav a:last-child {
+  .main-nav a:nth-last-child(-n + 2) {
     border-bottom: 0;
   }
 
-  .brand img {
-    width: min(100%, 16rem);
+  .main-nav a:last-child {
+    border-right: 0;
   }
 
   .hero-section {
-    padding-top: 2.25rem;
+    gap: 1.25rem;
+    padding: 1.75rem 1rem 2.25rem;
+  }
+
+  .hero-section::before {
+    border-radius: 0 0 0 40% / 0 0 0 24%;
+    inset: 42% 0 0;
+  }
+
+  .hero-section::after {
+    bottom: -6rem;
+    height: 13rem;
+    right: -7rem;
+    width: 15rem;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.6rem, 15vw, 4.3rem);
+    font-size: clamp(2.25rem, 11.5vw, 3.25rem);
+    line-height: 1.02;
+    max-width: 10.8ch;
+  }
+
+  .hero-intro {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-top: 1rem;
+  }
+
+  .hero-cta {
+    min-height: 3.35rem;
+    width: 100%;
   }
 
   .visual-window {
-    min-height: 18rem;
+    box-shadow: 0 1rem 2.75rem var(--shadow);
+    min-height: 13.5rem;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .visual-window::before {
+    height: 3.25rem;
+    left: 0.85rem;
+    top: 0.85rem;
+    width: 5rem;
+  }
+
+  .visual-window::after {
+    bottom: 0.85rem;
+    height: 4rem;
+    right: 0.85rem;
+    width: 4rem;
+  }
+
+  .visual-window strong {
+    font-size: clamp(1.6rem, 8.5vw, 2.35rem);
+  }
+
+  .impact-section {
+    min-height: 16rem;
+    padding: 2.4rem 1rem;
   }
 
   .impact-number {
-    font-size: clamp(5rem, 27vw, 8rem);
+    font-size: clamp(3.8rem, 21vw, 5.5rem);
+  }
+
+  .impact-section p {
+    font-size: clamp(1.05rem, 5.2vw, 1.45rem);
+    margin-top: 0.85rem;
   }
 
   .quote-section,
   .quote-two {
-    column-gap: 0.35rem;
+    column-gap: 0;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 2.5rem 1rem;
+    row-gap: 0.35rem;
+  }
+
+  .quote-section blockquote {
+    grid-column: 1;
+  }
+
+  .quote-section p {
+    font-size: clamp(1.2rem, 5.8vw, 1.65rem);
+    line-height: 1.28;
+    text-wrap: pretty;
   }
 
   .quote-mark {
-    font-size: clamp(3.75rem, 15vw, 5rem);
+    font-size: clamp(3.1rem, 18vw, 4.75rem);
+  }
+
+  .quote-close {
+    margin: 0.25rem 0 0.35rem;
   }
 
   .quote-section cite {
-    justify-items: start;
-    margin-left: 0;
+    justify-items: end;
+    margin: 0.5rem 0 0 auto;
+    text-align: right;
+  }
+
+  .quote-section cite span {
+    font-size: clamp(1.2rem, 6vw, 1.55rem);
+  }
+
+  .quote-two .outline-button {
+    grid-column: 1;
+    justify-self: stretch;
+    min-height: 3.25rem;
+    width: 100%;
+  }
+
+  .founders-section {
+    background: linear-gradient(180deg, var(--mint), #f4fbff);
+  }
+
+  .founder-row {
+    gap: 1rem;
+    padding: 2rem 1rem;
+  }
+
+  .portrait {
+    aspect-ratio: 16 / 10;
+    min-height: 10.5rem;
+  }
+
+  .portrait span {
+    font-size: 2rem;
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .founder-copy {
+    background: transparent;
+    border-left: 0;
+    border-top: 1px solid rgba(13, 71, 161, 0.16);
+    padding: 1rem 0 0;
+  }
+
+  .founder-copy h2 {
+    font-size: clamp(1.65rem, 8vw, 2.4rem);
+    line-height: 1.06;
+  }
+
+  .founder-copy p:last-child {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .site-footer {
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .site-footer a {
+    font-size: clamp(1rem, 5.3vw, 1.45rem);
   }
 
   .site-footer a::before {
-    height: 2rem;
-    margin-right: 0.7rem;
-    width: 2rem;
+    font-size: 1rem;
+    height: 1.9rem;
+    margin-right: 0.65rem;
+    width: 1.9rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-copy h1 {
+    font-size: clamp(2rem, 11vw, 2.55rem);
+  }
+
+  .main-nav a {
+    font-size: 0.82rem;
+    padding: 0.62rem 0.45rem;
+  }
+
+  .quote-section p {
+    font-size: 1.15rem;
   }
 }
