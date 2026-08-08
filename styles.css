@@ -161,7 +161,7 @@ img {
 
 .hero-copy h1 {
   color: var(--ink);
-  font-size: clamp(3rem, 7.8vw, 7rem);
+  font-size: clamp(2.75rem, 6.9vw, 6.1rem);
   font-weight: 950;
   line-height: 0.98;
   margin: 0;
@@ -682,7 +682,7 @@ img {
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.25rem, 11.5vw, 3.25rem);
+    font-size: clamp(2.05rem, 10.2vw, 2.95rem);
     line-height: 1.02;
     max-width: 10.8ch;
   }
@@ -837,7 +837,7 @@ img {
 
 @media (max-width: 380px) {
   .hero-copy h1 {
-    font-size: clamp(2rem, 11vw, 2.55rem);
+    font-size: clamp(1.9rem, 10vw, 2.35rem);
   }
 
   .main-nav a {
