@@ -1,38 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Beyond the Swipe</title>
+    <meta
+      name="description"
+      content="Promoting financial literacy amongst teens and young adults through practical student-centered workshops."
+    />
+    <meta property="og:title" content="Beyond the Swipe" />
+    <meta
+      property="og:description"
+      content="Promoting financial literacy amongst teens and young adults through practical student-centered workshops."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Beyond the Swipe" />
+    <meta
+      name="twitter:description"
+      content="Promoting financial literacy amongst teens and young adults through practical student-centered workshops."
+    />
+    <link rel="icon" href="images/logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Beyond the Swipe home">
+        <img
+          src="images/logo-header.png"
+          alt="Beyond the Swipe"
+          width="1016"
+          height="496"
+        />
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#get-started">Get Started</a>
+        <a href="#about">About Us</a>
+        <a href="#mission">Our Mission</a>
+        <a href="#testimonials">Testimonials</a>
+      </nav>
+    </header>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+    <main id="top">
+      <section class="hero-section" id="get-started">
+        <div class="hero-copy">
+          <p class="eyebrow">Beyond the Swipe</p>
+          <h1>Promoting financial literacy amongst teens and young adults.</h1>
+          <p class="hero-intro">
+            We help students understand spending, saving, budgeting, and
+            everyday money decisions through practical workshops built for real
+            life.
+          </p>
+        </div>
 
-        /* Header containing the logo and website name */
-        .header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;              /* Space between logo and text */
-            padding: 40px 0;
-        }
+        <div
+          class="hero-visual"
+          role="img"
+          aria-label="Student financial literacy workshop"
+        >
+          <div class="visual-window">
+            <span>Budget basics</span>
+            <strong>Smart spending starts here</strong>
+          </div>
+        </div>
 
-        .logo {
-            width: 500px;
-            height: auto;
-        }
-    </style>
-</head>
+        <a class="cta-button hero-cta" href="#about">
+          Get Started <span aria-hidden="true">-&gt;</span>
+        </a>
+      </section>
 
-<body>
+      <section class="impact-section" id="mission">
+        <div class="impact-number">1,000+</div>
+        <p>Students Reached</p>
+      </section>
 
-    <div class="header">
-        <img src="images/logo.png" alt="Website Logo" class="logo">
-    </div>
+      <section class="quote-section quote-one" id="testimonials">
+        <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+        <blockquote>
+          <p>
+            Beyond the Swipe gives students the confidence to ask better
+            questions, make stronger choices, and see money as a tool they can
+            understand.
+          </p>
+          <cite>
+            <span>John Doe</span>
+            Wharton Business School Graduate
+          </cite>
+        </blockquote>
+        <div class="quote-mark quote-close" aria-hidden="true">&rdquo;</div>
+      </section>
 
-</body>
+      <section class="quote-section quote-two">
+        <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+        <blockquote>
+          <p>
+            Financial literacy changes what young people believe is possible for
+            their future, one everyday decision at a time.
+          </p>
+          <cite>
+            <span>Jane Doe</span>
+            Stanford Graduate
+          </cite>
+        </blockquote>
+        <a class="outline-button" href="#testimonials">
+          See more <span aria-hidden="true">-&gt;</span>
+        </a>
+        <div class="quote-mark quote-close" aria-hidden="true">&rdquo;</div>
+      </section>
+
+      <section class="founders-section" id="about">
+        <article class="founder-row">
+          <div class="portrait portrait-rebecca" aria-hidden="true">
+            <span>RS</span>
+          </div>
+          <div class="founder-copy">
+            <p class="founder-role">Rebecca Smith, Founder</p>
+            <h2>Making money conversations approachable.</h2>
+            <p>
+              Rebecca leads student workshops focused on budgeting, spending
+              awareness, saving habits, and financial confidence for teens and
+              young adults.
+            </p>
+          </div>
+        </article>
+
+        <article class="founder-row founder-row-alt">
+          <div class="portrait portrait-mary" aria-hidden="true">
+            <span>MS</span>
+          </div>
+          <div class="founder-copy">
+            <p class="founder-role">Mary Smith, Founder</p>
+            <h2>Turning everyday choices into lifelong skills.</h2>
+            <p>
+              Mary develops resources that connect classroom lessons to real
+              spending behavior, helping students practice decisions before they
+              face them alone.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="https://www.instagram.com/examplehere">@examplehere</a>
+      <a href="mailto:B.example@example.com">B.example@example.com</a>
+    </footer>
+  </body>
 </html>
