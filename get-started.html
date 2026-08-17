@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get Started | Beyond the Swipe</title>
+    <meta
+      name="description"
+      content="Answer a few questions and get personalized financial literacy suggestions from Beyond the Swipe."
+    />
+    <meta property="og:title" content="Get Started | Beyond the Swipe" />
+    <meta
+      property="og:description"
+      content="Answer a few questions and get personalized financial literacy suggestions from Beyond the Swipe."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Get Started | Beyond the Swipe" />
+    <meta
+      name="twitter:description"
+      content="Answer a few questions and get personalized financial literacy suggestions from Beyond the Swipe."
+    />
+    <link rel="icon" href="images/logo.png" />
+    <link rel="stylesheet" href="styles.css?v=advisor-flow" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Beyond the Swipe home">
+        <img
+          src="images/logo-header.png"
+          alt="Beyond the Swipe"
+          width="1016"
+          height="496"
+        />
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="active" href="get-started.html" aria-current="page">
+          Get Started
+        </a>
+        <a href="about.html">About Us</a>
+        <a href="mission.html">Our Mission</a>
+        <a href="index.html#testimonials">Testimonials</a>
+      </nav>
+    </header>
+
+    <main class="advisor-page" id="top">
+      <section class="advisor-hero">
+        <div class="advisor-intro">
+          <p class="advisor-kicker">Get Started</p>
+          <h1>Answer a few questions. Get clearer money next steps.</h1>
+          <p>
+            This quick checkup asks about college plans, income, saving,
+            spending, and credit. At the end, you will get personalized
+            suggestions you can actually use.
+          </p>
+        </div>
+
+        <div class="advisor-shell" data-advisor>
+          <section class="advisor-card" aria-live="polite">
+            <div class="advisor-progress-row">
+              <span id="advisor-progress-label">Question 1</span>
+              <span id="advisor-progress-value">0%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-bar" id="advisor-progress-bar"></div>
+            </div>
+            <div id="advisor-stage">
+              <p class="empty-state">Loading the question flow...</p>
+            </div>
+          </section>
+
+          <aside class="answer-card">
+            <p class="advisor-kicker">Your answers</p>
+            <div id="advisor-answers">
+              <p class="empty-state">
+                Your responses will appear here as you move through the
+                questions.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="get-started.js?v=advisor-flow"></script>
+  </body>
+</html>
