@@ -120,6 +120,9 @@ const progressBar = document.querySelector("#advisor-progress-bar");
 let steps = [];
 let currentId = "college";
 let finished = false;
+let advice = null;
+let adviceLoading = false;
+let adviceKey = "";
 
 function buildAnswers() {
   return steps.reduce((result, step) => {
@@ -252,6 +255,83 @@ function generateFeedback(answers) {
   return feedback.slice(0, 7);
 }
 
+function buildSummary(answers) {
+  if (answers.college === "Yes") {
+    const major = answers.major ? ` for ${answers.major}` : "";
+    return `You are thinking ahead about college${major}, so your strongest next step is to connect school costs, savings habits, and spending choices into one plan.`;
+  }
+
+  if (answers.hasJob === "Yes") {
+    return "You already have money decisions to practice now, so the goal is to turn income into a simple system for saving, spending, and future needs.";
+  }
+
+  return "You are still shaping your next steps, so this is a good moment to build basic habits around spending awareness, saving, and future planning.";
+}
+
+function generateFallbackAdvice(answers) {
+  return {
+    source: "fallback",
+    summary: buildSummary(answers),
+    suggestions: generateFeedback(answers),
+    disclaimer:
+      "This guidance is educational and based on your answers. For major money decisions, talk with a trusted adult, counselor, or financial aid office.",
+  };
+}
+
+function getAdviceApiUrl() {
+  return window.BTS_ADVICE_API_URL || "/api/advice";
+}
+
+function normalizeAdvice(payload, fallback) {
+  const suggestions = Array.isArray(payload?.suggestions)
+    ? payload.suggestions.filter((item) => typeof item === "string" && item.trim())
+    : [];
+
+  if (!payload?.summary || !payload?.disclaimer || suggestions.length === 0) {
+    return fallback;
+  }
+
+  return {
+    source: payload.source === "ai" ? "ai" : "fallback",
+    summary: payload.summary,
+    suggestions,
+    disclaimer: payload.disclaimer,
+  };
+}
+
+async function requestAdvice() {
+  const answers = buildAnswers();
+  const fallback = generateFallbackAdvice(answers);
+  const nextAdviceKey = JSON.stringify(answers);
+
+  if (adviceLoading || adviceKey === nextAdviceKey) {
+    return;
+  }
+
+  adviceLoading = true;
+  adviceKey = nextAdviceKey;
+  render();
+
+  try {
+    const response = await fetch(getAdviceApiUrl(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers }),
+    });
+
+    if (!response.ok) {
+      advice = fallback;
+    } else {
+      advice = normalizeAdvice(await response.json(), fallback);
+    }
+  } catch {
+    advice = fallback;
+  } finally {
+    adviceLoading = false;
+    render();
+  }
+}
+
 function createElement(tag, className, text) {
   const element = document.createElement(tag);
   if (className) {
@@ -265,9 +345,11 @@ function createElement(tag, className, text) {
 
 function updateProgress() {
   const progress = finished
-    ? 100
+    ? advice ? 100 : 96
     : Math.min(92, Math.round((steps.length / 11) * 100));
-  progressLabel.textContent = finished ? "Feedback ready" : `Question ${steps.length + 1}`;
+  progressLabel.textContent = finished
+    ? advice ? "Feedback ready" : "Generating feedback"
+    : `Question ${steps.length + 1}`;
   progressValue.textContent = `${progress}%`;
   progressBar.style.width = `${progress}%`;
 }
@@ -311,6 +393,8 @@ function commitAnswer(value) {
     finished = false;
   } else {
     finished = true;
+    advice = null;
+    adviceKey = "";
   }
 
   render();
@@ -325,6 +409,9 @@ function goBack() {
   steps = steps.slice(0, -1);
   currentId = previous.id;
   finished = false;
+  advice = null;
+  adviceLoading = false;
+  adviceKey = "";
   render(previous.value);
 }
 
@@ -332,6 +419,9 @@ function restart() {
   steps = [];
   currentId = "college";
   finished = false;
+  advice = null;
+  adviceLoading = false;
+  adviceKey = "";
   render();
 }
 
@@ -340,7 +430,7 @@ function renderQuestion(draftValue = "") {
   stage.innerHTML = "";
 
   const panel = createElement("div", "question-panel");
-  panel.append(createElement("p", "advisor-kicker", "Guided money checkup"));
+  panel.append(createElement("p", "advisor-kicker", "AI-powered money checkup"));
   panel.append(createElement("h2", "", question.prompt));
 
   if (question.helper) {
@@ -397,22 +487,38 @@ function renderFeedback() {
   stage.innerHTML = "";
 
   const panel = createElement("div", "feedback-panel");
-  panel.append(createElement("p", "advisor-kicker", "Personalized feedback"));
+
+  if (!advice) {
+    panel.append(createElement("p", "advisor-kicker", "AI personalized feedback"));
+    panel.append(createElement("h2", "", "Generating your advice"));
+    panel.append(
+      createElement(
+        "p",
+        "feedback-note",
+        "We are reviewing your answers and preparing student-friendly money suggestions.",
+      ),
+    );
+    stage.append(panel);
+    return;
+  }
+
+  panel.append(
+    createElement(
+      "p",
+      "advisor-kicker",
+      advice.source === "ai" ? "AI personalized feedback" : "Guided feedback",
+    ),
+  );
   panel.append(createElement("h2", "", "Your next money moves"));
+  panel.append(createElement("p", "feedback-summary", advice.summary));
 
   const list = createElement("ul", "feedback-list");
-  generateFeedback(buildAnswers()).forEach((item) => {
+  advice.suggestions.forEach((item) => {
     list.append(createElement("li", "", item));
   });
 
   panel.append(list);
-  panel.append(
-    createElement(
-      "p",
-      "feedback-note",
-      "This guidance is educational and based on your answers. For major money decisions, talk with a trusted adult, counselor, or financial aid office.",
-    ),
-  );
+  panel.append(createElement("p", "feedback-note", advice.disclaimer));
 
   const actions = createElement("div", "advisor-actions");
   const back = createElement("button", "secondary-button", "Change last answer");
@@ -433,6 +539,7 @@ function render(draftValue = "") {
   renderAnswers();
 
   if (finished) {
+    requestAdvice();
     renderFeedback();
   } else {
     renderQuestion(draftValue);

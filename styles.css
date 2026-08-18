@@ -815,6 +815,7 @@ img {
 }
 
 .question-helper,
+.feedback-summary,
 .feedback-note,
 .empty-state {
   color: rgba(13, 71, 161, 0.75);
@@ -958,6 +959,11 @@ img {
 .feedback-list {
   list-style: none;
   margin-top: 1.1rem;
+}
+
+.feedback-summary {
+  color: rgba(13, 71, 161, 0.84);
+  margin: 0.9rem 0 0;
 }
 
 .feedback-list li {
