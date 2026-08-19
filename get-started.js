@@ -1,3 +1,6 @@
+const BTS_API_BASE =
+  window.BTS_API_BASE || "https://beyond-the-swipe.liqiangz.workers.dev";
+
 const questions = {
   college: {
     prompt: "Do you want to go to college?",
@@ -279,7 +282,7 @@ function generateFallbackAdvice(answers) {
 }
 
 function getAdviceApiUrl() {
-  return window.BTS_ADVICE_API_URL || "/api/advice";
+  return window.BTS_ADVICE_API_URL || `${BTS_API_BASE}/api/advice`;
 }
 
 function normalizeAdvice(payload, fallback) {
