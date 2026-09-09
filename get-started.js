@@ -1,9 +1,10 @@
 const BTS_API_BASE =
   window.BTS_API_BASE || "https://beyond-the-swipe.liqiangz.workers.dev";
+const QUESTION_PROGRESS_COUNT = 13;
 
 const questions = {
   college: {
-    prompt: "Do you want to go to college?",
+    prompt: "Do you plan to go to college?",
     kind: "choice",
     options: ["Yes", "No", "Not sure yet"],
     next: (_answers, value) => (value === "Yes" ? "major" : "stableIncome"),
@@ -28,8 +29,7 @@ const questions = {
     next: () => "paidPrograms",
   },
   paidPrograms: {
-    prompt:
-      "Have you done any programs outside of school that require money to be spent?",
+    prompt: "Have you done any paid programs outside of school?",
     helper: "Think about camps, certification programs, clubs, trips, or lessons.",
     kind: "choice",
     options: ["Yes", "No"],
@@ -66,8 +66,7 @@ const questions = {
     next: () => "hasJob",
   },
   hasJob: {
-    prompt:
-      "Do you currently have a job or have a way to make money in high school?",
+    prompt: "Do you currently have a way to make money in high school?",
     kind: "choice",
     options: ["Yes", "No"],
     next: (_answers, value) =>
@@ -215,7 +214,7 @@ function generateFeedback(answers) {
     }
   } else if (answers.financialConfidence !== "Yes") {
     feedback.push(
-      "A small job, paid task, or structured allowance can make financial literacy feel more real because you practice choices with your own money.",
+      "A small job, paid task, or structured allowance can make financial literacy feel more real because you practice choices with your own money while you are still in high school.",
     );
   }
 
@@ -265,10 +264,10 @@ function buildSummary(answers) {
   }
 
   if (answers.hasJob === "Yes") {
-    return "You already have money decisions to practice now, so the goal is to turn income into a simple system for saving, spending, and future needs.";
+    return "You already have money decisions to practice in high school, so the goal is to turn income into a simple system for saving, spending, and future needs.";
   }
 
-  return "You are still shaping your next steps, so this is a good moment to build basic habits around spending awareness, saving, and future planning.";
+  return "You are still shaping your next steps in high school, so this is a good moment to build basic habits around spending awareness, saving, and future planning.";
 }
 
 function generateFallbackAdvice(answers) {
@@ -349,7 +348,7 @@ function createElement(tag, className, text) {
 function updateProgress() {
   const progress = finished
     ? advice ? 100 : 96
-    : Math.min(92, Math.round((steps.length / 11) * 100));
+    : Math.min(92, Math.round((steps.length / QUESTION_PROGRESS_COUNT) * 100));
   progressLabel.textContent = finished
     ? advice ? "Feedback ready" : "Generating feedback"
     : `Question ${steps.length + 1}`;
@@ -365,7 +364,7 @@ function renderAnswers() {
       createElement(
         "p",
         "empty-state",
-        "Your responses will appear here as you move through the questions.",
+        "Your responses will appear here as you move through the checkup.",
       ),
     );
     return;
@@ -433,7 +432,7 @@ function renderQuestion(draftValue = "") {
   stage.innerHTML = "";
 
   const panel = createElement("div", "question-panel");
-  panel.append(createElement("p", "advisor-kicker", "AI-powered money checkup"));
+  panel.append(createElement("p", "advisor-kicker", "High school money checkup"));
   panel.append(createElement("h2", "", question.prompt));
 
   if (question.helper) {
@@ -498,7 +497,7 @@ function renderFeedback() {
       createElement(
         "p",
         "feedback-note",
-        "We are reviewing your answers and preparing student-friendly money suggestions.",
+        "We are reviewing your answers and preparing high-school-friendly money suggestions.",
       ),
     );
     stage.append(panel);
