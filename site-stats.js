@@ -11,20 +11,33 @@ function formatStudentsGuided(value) {
 
 async function loadStudentsGuided() {
   const target = document.querySelector("[data-students-guided]");
-  if (!target) {
-    return;
-  }
+  const visitSessionKey = "bts-site-visit-recorded";
+  const alreadyRecorded = sessionStorage.getItem(visitSessionKey) === "1";
 
   try {
-    const response = await fetch(`${BTS_API_BASE}/api/stats`, { cache: "no-store" });
+    if (!alreadyRecorded) {
+      sessionStorage.setItem(visitSessionKey, "1");
+    }
+
+    const response = await fetch(
+      `${BTS_API_BASE}${alreadyRecorded ? "/api/stats" : "/api/visit"}`,
+      {
+        method: alreadyRecorded ? "GET" : "POST",
+        cache: "no-store",
+      },
+    );
     if (!response.ok) {
-      return;
+      throw new Error("Visit counter request failed.");
     }
 
     const payload = await response.json();
-    target.textContent = formatStudentsGuided(payload.studentsGuided);
+    if (target) {
+      target.textContent = formatStudentsGuided(payload.studentsGuided);
+    }
   } catch {
-    // Keep the starter value if the backend is temporarily unavailable.
+    if (!alreadyRecorded) {
+      sessionStorage.removeItem(visitSessionKey);
+    }
   }
 }
 
