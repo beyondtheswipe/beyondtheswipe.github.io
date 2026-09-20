@@ -21,7 +21,7 @@
       content="Answer a few high-school-focused questions and get personalized financial literacy suggestions from Beyond the Swipe."
     />
     <link rel="icon" href="images/logo.png" />
-    <link rel="stylesheet" href="styles.css?v=blue-fonts-testimonials" />
+    <link rel="stylesheet" href="styles.css?v=sketch-refresh" />
   </head>
   <body>
     <header class="site-header">
@@ -37,14 +37,14 @@
         <a class="active" href="get-started.html" aria-current="page">
           Get Started
         </a>
-        <a href="about.html">About Us</a>
         <a href="mission.html">Our Mission</a>
         <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact Us</a>
       </nav>
     </header>
 
     <main class="advisor-page" id="top">
-      <section class="advisor-hero">
+      <section class="get-started-hero">
         <div class="advisor-intro">
           <p class="advisor-kicker">Get Started</p>
           <h1>Money next steps for high schoolers.</h1>
@@ -54,7 +54,19 @@
             you will get personalized suggestions you can actually use.
           </p>
         </div>
+        <img
+          src="images/student-workshop.webp"
+          alt="Students completing a practical financial literacy activity"
+          width="1792"
+          height="1024"
+        />
+      </section>
 
+      <section class="advisor-hero" id="questionnaire">
+        <div class="survey-heading">
+          <p class="advisor-kicker">Your money checkup</p>
+          <h2>Build your next steps.</h2>
+        </div>
         <div class="advisor-shell" data-advisor>
           <section class="advisor-card" aria-live="polite">
             <div class="advisor-progress-row">
@@ -80,7 +92,24 @@
           </aside>
         </div>
       </section>
+
+      <section class="next-steps-section">
+        <p class="section-kicker">What to do next</p>
+        <h2>Keep learning with Beyond the Swipe.</h2>
+        <div class="next-step-actions">
+          <span class="outline-button disabled-link" aria-disabled="true">Presentations coming soon</span>
+          <a class="cta-button" href="contact.html">Contact us <span aria-hidden="true">-&gt;</span></a>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <p>Stay connected with Beyond the Swipe.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/beyondtheswipeproject">@beyondtheswipeproject</a>
+        <a href="mailto:hello@beyondtheswipe.org">hello@beyondtheswipe.org</a>
+      </div>
+    </footer>
 
     <script src="get-started.js?v=clean-high-school"></script>
     <script src="site-stats.js?v=visit-counter"></script>
