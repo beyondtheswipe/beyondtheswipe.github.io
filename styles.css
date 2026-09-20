@@ -1738,6 +1738,102 @@ img {
   transform: none;
 }
 
+.presentations-page {
+  min-height: calc(100svh - 6.6rem);
+}
+
+.presentations-intro {
+  background: linear-gradient(120deg, var(--sky), var(--paper) 70%);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.presentations-intro h1,
+.presentation-placeholder h2 {
+  color: var(--navy);
+  font-family: var(--font-title);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.presentations-intro h1 {
+  font-size: clamp(2.5rem, 6vw, 5.8rem);
+  max-width: 13ch;
+}
+
+.presentations-intro > p:last-child {
+  color: rgba(24, 50, 74, 0.82);
+  font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+  font-weight: 650;
+  line-height: 1.5;
+  margin: 1.2rem 0 0;
+  max-width: 44rem;
+}
+
+.presentation-stage {
+  background: #ffffff;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.presentation-placeholder {
+  align-content: center;
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(135deg, rgba(219, 234, 254, 0.8), rgba(248, 251, 255, 0.96)),
+    repeating-linear-gradient(-12deg, rgba(37, 99, 235, 0.08) 0 2px, transparent 2px 18px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  justify-items: center;
+  margin: 0 auto;
+  max-height: 42rem;
+  max-width: 74rem;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.presentation-placeholder > span {
+  color: var(--teal);
+  font-family: var(--font-title);
+  font-size: 0.82rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+
+.presentation-placeholder h2 {
+  font-size: clamp(1.8rem, 4vw, 3.6rem);
+}
+
+.presentation-placeholder p,
+.presentation-next-step p {
+  color: rgba(24, 50, 74, 0.8);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.presentation-placeholder p {
+  margin: 0.9rem 0 0;
+}
+
+.presentation-next-step {
+  align-items: center;
+  background: var(--sky);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: space-between;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.presentation-next-step p {
+  margin: 0;
+}
+
 .contact-page {
   min-height: calc(100svh - 6.6rem);
 }
@@ -1856,5 +1952,13 @@ img {
 
   .footer-links {
     display: grid;
+  }
+
+  .presentation-placeholder {
+    aspect-ratio: 4 / 3;
+  }
+
+  .presentation-next-step .cta-button {
+    width: 100%;
   }
 }
