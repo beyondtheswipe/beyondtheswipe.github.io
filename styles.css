@@ -1901,16 +1901,26 @@ img {
 }
 
 .contact-founder h2 {
+  float: left;
   font-size: clamp(2rem, 4vw, 3.8rem);
+  margin: 0.1rem clamp(1.5rem, 4vw, 3.5rem) 0.75rem 0;
+  max-width: 13rem;
 }
 
-.contact-founder div > p:last-child {
+.founder-bio {
+  margin-top: 1rem;
+}
+
+.founder-bio p {
   color: rgba(24, 50, 74, 0.82);
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   font-weight: 650;
   line-height: 1.55;
-  margin: 1rem 0 0;
-  max-width: 48rem;
+  margin: 0;
+}
+
+.founder-bio p + p {
+  margin-top: 1rem;
 }
 
 .site-footer > p {
@@ -1971,6 +1981,12 @@ img {
 @media (max-width: 560px) {
   .contact-founder {
     grid-template-columns: 1fr;
+  }
+
+  .contact-founder h2 {
+    float: none;
+    margin-right: 0;
+    max-width: none;
   }
 
   .contact-founder img {
