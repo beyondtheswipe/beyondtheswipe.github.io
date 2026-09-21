@@ -1630,7 +1630,7 @@ img {
 
 .solution-section {
   background: linear-gradient(120deg, var(--sky), #ffffff 68%);
-  grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(12rem, 0.55fr) minmax(0, 1.2fr) minmax(14rem, 0.65fr);
 }
 
 .section-kicker {
@@ -1671,7 +1671,22 @@ img {
 
 .solution-section .outline-button {
   align-self: end;
+  grid-column: 2;
+  justify-self: start;
   white-space: nowrap;
+}
+
+.solution-graphic {
+  align-self: center;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 1rem 2.6rem var(--shadow);
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  height: auto;
+  justify-self: end;
+  width: min(100%, 30rem);
 }
 
 .get-started-hero {
@@ -1867,8 +1882,12 @@ img {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: clamp(1.5rem, 4vw, 4rem);
-  grid-template-columns: minmax(14rem, 22rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.contact-founder > div {
+  max-width: 62rem;
 }
 
 .contact-founder img {
@@ -1937,7 +1956,15 @@ img {
   }
 
   .solution-section .outline-button {
+    grid-column: 1;
     justify-self: start;
+  }
+
+  .solution-graphic {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    width: min(100%, 32rem);
   }
 }
 
