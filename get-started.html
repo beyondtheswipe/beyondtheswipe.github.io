@@ -68,23 +68,36 @@
         />
       </section>
 
-      <section
-        class="advisor-hero embedded-form-section"
-        aria-labelledby="google-form-heading"
-      >
+      <section class="advisor-hero college-survey-section" aria-labelledby="college-survey-heading">
         <div class="survey-heading">
-          <p class="advisor-kicker">Student survey</p>
-          <h2 id="google-form-heading">Share your experience.</h2>
+          <p class="advisor-kicker">College student survey</p>
+          <h2 id="college-survey-heading">Share your experience.</h2>
+          <p class="survey-description">
+            Help us understand how free time, spending triggers, and money habits
+            shape college students' financial choices. The survey takes just a
+            few minutes, and findings will be reported anonymously.
+          </p>
         </div>
-        <div class="embedded-frame embedded-form-frame">
-          <iframe
-            class="google-form-embed"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfSCjxzEwIHl9lEOBQJjXDWM_sBqb9FGCX4Xxks38taGDhMLw/viewform?embedded=true"
-            title="Beyond the Swipe student survey"
-            loading="lazy"
-          >
-            Loading the student survey...
-          </iframe>
+        <div class="advisor-shell college-survey-shell" data-college-survey>
+          <section class="advisor-card" aria-live="polite">
+            <div class="advisor-progress-row">
+              <span id="college-progress-label">Question 1 of 15</span>
+              <span id="college-progress-value">0%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-bar" id="college-progress-bar"></div>
+            </div>
+            <div id="college-survey-stage">
+              <p class="empty-state">Loading the college student survey...</p>
+            </div>
+          </section>
+
+          <aside class="answer-card">
+            <p class="advisor-kicker">Your answers</p>
+            <div id="college-survey-answers">
+              <p class="empty-state">Your responses will appear here as you move through the survey.</p>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -136,6 +149,7 @@
       </div>
     </footer>
 
+    <script src="college-survey.js?v=d1-collection"></script>
     <script src="get-started.js?v=clean-high-school"></script>
     <script src="site-stats.js?v=visit-counter"></script>
   </body>
