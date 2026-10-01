@@ -1677,6 +1677,14 @@ img {
   width: 100%;
 }
 
+.hero-visual .home-finance-graphic {
+  border: 0;
+  box-shadow: none;
+  height: auto;
+  max-height: 34rem;
+  object-fit: contain;
+}
+
 .story-section {
   align-items: start;
   border-bottom: 1px solid var(--line);
@@ -1752,24 +1760,15 @@ img {
 }
 
 .get-started-hero {
-  align-items: stretch;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(22rem, 1.15fr);
-  min-height: 28rem;
+  min-height: auto;
 }
 
 .get-started-hero .advisor-intro {
-  align-self: center;
+  margin: 0 auto;
+  max-width: 72rem;
   padding: clamp(2.5rem, 6vw, 5rem);
-}
-
-.get-started-hero img {
-  height: 100%;
-  min-height: 28rem;
-  object-fit: cover;
-  width: 100%;
 }
 
 .survey-heading {
@@ -2035,8 +2034,7 @@ img {
 }
 
 @media (max-width: 900px) {
-  .hero-section,
-  .get-started-hero {
+  .hero-section {
     grid-template-columns: 1fr;
   }
 
@@ -2054,13 +2052,6 @@ img {
   }
 
   .hero-visual img {
-    height: auto;
-    max-height: none;
-    min-height: 0;
-    object-fit: contain;
-  }
-
-  .get-started-hero img {
     height: auto;
     max-height: none;
     min-height: 0;
