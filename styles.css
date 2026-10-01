@@ -1723,6 +1723,30 @@ img {
   min-height: auto;
 }
 
+.embedded-form-section {
+  border-bottom: 1px solid var(--line);
+}
+
+.embedded-frame {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 1rem 2.6rem var(--shadow);
+  margin: 2rem auto 0;
+  max-width: 72rem;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.google-form-embed {
+  border: 0;
+  display: block;
+  height: clamp(48rem, 88vh, 70rem);
+  width: 100%;
+}
+
 .next-steps-section {
   background: var(--paper);
   border-top: 1px solid var(--line);
@@ -1789,6 +1813,18 @@ img {
 .presentation-stage {
   background: #ffffff;
   padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.presentation-frame {
+  margin-top: 0;
+  max-width: 74rem;
+}
+
+.presentation-embed {
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+  width: 100%;
 }
 
 .presentation-placeholder {
@@ -2014,6 +2050,14 @@ img {
 
   .presentation-placeholder {
     aspect-ratio: 4 / 3;
+  }
+
+  .embedded-frame {
+    margin-top: 1.25rem;
+  }
+
+  .google-form-embed {
+    height: 44rem;
   }
 
   .presentation-next-step .cta-button {
