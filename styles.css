@@ -1771,6 +1771,14 @@ img {
   padding: clamp(2.5rem, 6vw, 5rem);
 }
 
+.get-started-hero .advisor-intro h1 {
+  max-width: none;
+}
+
+.get-started-hero .advisor-intro > p:not(.advisor-kicker) {
+  max-width: 68rem;
+}
+
 .survey-heading {
   margin: 0 auto;
   max-width: 72rem;
