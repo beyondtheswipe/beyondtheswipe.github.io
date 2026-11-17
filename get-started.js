@@ -125,6 +125,13 @@ let finished = false;
 let advice = null;
 let adviceLoading = false;
 let adviceKey = "";
+let submissionId = createSubmissionId();
+
+function createSubmissionId() {
+  return typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
 
 function buildAnswers() {
   return steps.reduce((result, step) => {
@@ -318,7 +325,7 @@ async function requestAdvice() {
     const response = await fetch(getAdviceApiUrl(), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ answers }),
+      body: JSON.stringify({ answers, submissionId }),
     });
 
     if (!response.ok) {
@@ -424,6 +431,7 @@ function restart() {
   advice = null;
   adviceLoading = false;
   adviceKey = "";
+  submissionId = createSubmissionId();
   render();
 }
 
