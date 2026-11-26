@@ -53,9 +53,10 @@
 
   function showScore(score) {
     field("score").textContent = String(score);
+    const cloudProgress = Math.pow(Math.min(1, score / 3500), 0.4);
     root.style.setProperty("--rise-height", `${Math.min(72, (score / 3500) * 72)}%`);
-    root.style.setProperty("--cloud-back-shift", `${Math.min(55, (score / 3500) * 55)}px`);
-    root.style.setProperty("--cloud-front-shift", `${Math.min(120, (score / 3500) * 120)}px`);
+    root.style.setProperty("--cloud-back-shift", `${Math.round(cloudProgress * 110)}px`);
+    root.style.setProperty("--cloud-front-shift", `${Math.round(cloudProgress * 260)}px`);
   }
 
   function categoryLabel(data) {
@@ -124,24 +125,28 @@
   async function submitAnswer(value) {
     if (busy || !sessionId) return;
     busy = true;
-    clearInterval(timer);
     answerInput.disabled = true;
     answerForm.querySelector("button").disabled = true;
     showError("");
     field("result").textContent = value ? "Scoring your answer..." : "Time is up...";
     try {
       const data = await send({ action: "answer", sessionId, answer: value });
-      showScore(data.score);
-      if (data.round === 7) finish(data);
-      else beginRound(data, `${categoryLabel(data)}+${data.points} points. ${data.explanation}`);
+      if (data.retry) {
+        field("result").textContent = `Try again. ${data.explanation}`;
+        answerInput.value = "";
+      } else {
+        showScore(data.score);
+        if (data.round === 7) finish(data);
+        else beginRound(data, `${categoryLabel(data)}+${data.points} points. ${data.explanation}`);
+      }
     } catch (cause) {
       showError(cause.message);
-      timer = setInterval(tick, 100);
-      tick();
     } finally {
       busy = false;
       answerInput.disabled = false;
       answerForm.querySelector("button").disabled = false;
+      if (!answerForm.hidden) answerInput.focus();
+      if (!answerForm.hidden) tick();
     }
   }
 

@@ -2136,23 +2136,22 @@ img {
 .game-clouds {
   background-image: url("images/game-clouds.svg");
   background-repeat: repeat;
-  inset: -40% 0;
+  inset: 0;
   pointer-events: none;
   position: absolute;
-  transition: transform 850ms ease-out;
+  transition: background-position 1100ms ease-out;
 }
 
 .game-clouds-back {
+  background-position: 0 var(--cloud-back-shift, 0px);
   background-size: 42rem auto;
   opacity: 0.42;
-  transform: translateY(var(--cloud-back-shift, 0px));
 }
 
 .game-clouds-front {
-  background-position: 8rem 4rem;
+  background-position: 8rem calc(4rem + var(--cloud-front-shift, 0px));
   background-size: 58rem auto;
   opacity: 0.78;
-  transform: translateY(var(--cloud-front-shift, 0px));
 }
 
 .game-altitude {
