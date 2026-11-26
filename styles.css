@@ -2139,19 +2139,19 @@ img {
   inset: 0;
   pointer-events: none;
   position: absolute;
-  transition: background-position 1100ms ease-out;
+  transition: background-position 1400ms ease-out;
 }
 
 .game-clouds-back {
   background-position: 0 var(--cloud-back-shift, 0px);
-  background-size: 42rem auto;
-  opacity: 0.42;
+  background-size: 36rem auto;
+  opacity: 0.55;
 }
 
 .game-clouds-front {
   background-position: 8rem calc(4rem + var(--cloud-front-shift, 0px));
-  background-size: 58rem auto;
-  opacity: 0.78;
+  background-size: 45rem auto;
+  opacity: 0.9;
 }
 
 .game-altitude {
@@ -2163,8 +2163,22 @@ img {
   justify-content: space-between;
   left: 1rem;
   position: absolute;
+  right: 1rem;
   top: 5%;
   z-index: 2;
+}
+
+.game-altitude span {
+  align-items: center;
+  display: flex;
+  gap: 0.65rem;
+  white-space: nowrap;
+}
+
+.game-altitude span::after {
+  border-top: 1px dashed rgba(25, 74, 119, 0.24);
+  content: "";
+  flex: 1;
 }
 
 .game-flyer {
@@ -2172,7 +2186,7 @@ img {
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
-  transition: bottom 850ms ease-out;
+  transition: bottom 1400ms ease-out;
   z-index: 3;
 }
 

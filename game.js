@@ -14,6 +14,8 @@
   let deadline = 0;
   let timer = null;
   let busy = false;
+  let lastScore = 0;
+  let cloudTravel = 0;
 
   async function send(body) {
     const response = await fetch(api, {
@@ -53,10 +55,19 @@
 
   function showScore(score) {
     field("score").textContent = String(score);
-    const cloudProgress = Math.pow(Math.min(1, score / 3500), 0.4);
-    root.style.setProperty("--rise-height", `${Math.min(72, (score / 3500) * 72)}%`);
-    root.style.setProperty("--cloud-back-shift", `${Math.round(cloudProgress * 110)}px`);
-    root.style.setProperty("--cloud-front-shift", `${Math.round(cloudProgress * 260)}px`);
+    if (score === 0) cloudTravel = 0;
+    else if (score > lastScore) cloudTravel += 140 + Math.min(280, (score - lastScore) * 0.5);
+    lastScore = score;
+
+    const visibleRange = Math.min(500, Math.max(50, Math.ceil((score + 25) / 50) * 50));
+    const lowerBound = Math.max(0, Math.floor((score - visibleRange * 0.45) / 5) * 5);
+    const labels = root.querySelectorAll(".game-altitude span");
+    [lowerBound + visibleRange, lowerBound + visibleRange / 2, lowerBound].forEach((value, index) => {
+      labels[index].textContent = `${value.toLocaleString()} pts`;
+    });
+    root.style.setProperty("--rise-height", `${((score - lowerBound) / visibleRange) * 72}%`);
+    root.style.setProperty("--cloud-back-shift", `${Math.round(cloudTravel * 0.42)}px`);
+    root.style.setProperty("--cloud-front-shift", `${Math.round(cloudTravel)}px`);
   }
 
   function categoryLabel(data) {
