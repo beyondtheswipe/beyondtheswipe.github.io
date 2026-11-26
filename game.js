@@ -53,7 +53,13 @@
 
   function showScore(score) {
     field("score").textContent = String(score);
-    root.style.setProperty("--rise-height", `${Math.min(72, (score / 700) * 72)}%`);
+    root.style.setProperty("--rise-height", `${Math.min(72, (score / 3500) * 72)}%`);
+    root.style.setProperty("--cloud-back-shift", `${Math.min(55, (score / 3500) * 55)}px`);
+    root.style.setProperty("--cloud-front-shift", `${Math.min(120, (score / 3500) * 120)}px`);
+  }
+
+  function categoryLabel(data) {
+    return data.points ? `${data.category[0].toUpperCase()}${data.category.slice(1)} · ` : "";
   }
 
   function tick() {
@@ -85,7 +91,7 @@
     field("time").textContent = "0";
     field("kicker").textContent = "Run complete";
     field("prompt").textContent = `${data.score} points`;
-    field("result").textContent = `Final answer: +${data.points} points. ${data.explanation} ${data.eligible
+    field("result").textContent = `Final answer: ${categoryLabel(data)}+${data.points} points. ${data.explanation} ${data.eligible
       ? "You made the top ten. Add a name to the leaderboard."
       : "Try another run to climb higher."}`;
     answerForm.hidden = true;
@@ -127,7 +133,7 @@
       const data = await send({ action: "answer", sessionId, answer: value });
       showScore(data.score);
       if (data.round === 7) finish(data);
-      else beginRound(data, `+${data.points} points. ${data.explanation}`);
+      else beginRound(data, `${categoryLabel(data)}+${data.points} points. ${data.explanation}`);
     } catch (cause) {
       showError(cause.message);
       timer = setInterval(tick, 100);
