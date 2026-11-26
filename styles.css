@@ -2051,6 +2051,263 @@ img {
   opacity: 0.78;
 }
 
+.hero-actions {
+  bottom: clamp(1.25rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: absolute;
+  right: clamp(1.25rem, 5vw, 5.5rem);
+  z-index: 2;
+}
+
+.hero-actions .hero-cta {
+  position: static;
+}
+
+.game-page {
+  background: #e9f4ff;
+  min-height: calc(100svh - 6.6rem);
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+.game-layout {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem);
+  margin: 0 auto;
+  max-width: 90rem;
+}
+
+.game-main,
+.game-leaderboard {
+  min-width: 0;
+}
+
+.game-topline,
+.game-stats,
+.game-leaderboard-heading span,
+.game-kicker {
+  color: var(--navy);
+  font-family: var(--font-title);
+  font-weight: 850;
+}
+
+.game-topline {
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.game-stats {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1rem 0;
+}
+
+.game-stats > div {
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.5rem 0;
+}
+
+.game-stats span {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.game-stats strong {
+  font-size: 1.8rem;
+}
+
+.game-stage {
+  background: linear-gradient(#73b9ed, #acd6f3 56%, #e4f4ff);
+  border: 1px solid #8fbad8;
+  border-radius: 8px;
+  height: clamp(16rem, 36vh, 24rem);
+  overflow: hidden;
+  position: relative;
+}
+
+.game-altitude {
+  color: #194a77;
+  display: flex;
+  flex-direction: column;
+  font: 750 0.8rem var(--font-title);
+  height: 90%;
+  justify-content: space-between;
+  left: 1rem;
+  position: absolute;
+  top: 5%;
+}
+
+.game-flyer {
+  bottom: calc(5% + var(--rise-height, 0%));
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  transition: bottom 850ms ease-out;
+  z-index: 1;
+}
+
+.game-flyer img {
+  display: block;
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
+.game-horizon {
+  background: #3a83c4;
+  bottom: 0;
+  height: 0.5rem;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.game-prompt-area {
+  padding: 1.4rem 0 2rem;
+}
+
+.game-kicker {
+  font-size: 0.8rem;
+  margin: 0 0 0.55rem;
+  text-transform: uppercase;
+}
+
+.game-prompt-area h1,
+.game-leaderboard h2 {
+  color: var(--navy);
+  font-family: var(--font-title);
+  letter-spacing: 0;
+}
+
+.game-prompt-area h1 {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.game-prompt-area > p:not(.game-kicker) {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.game-answer-form,
+.game-name-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.game-name-form label {
+  flex-basis: 100%;
+  font-family: var(--font-title);
+  font-weight: 800;
+}
+
+.game-answer-form input,
+.game-name-form input {
+  background: #fff;
+  border: 1px solid #8fbad8;
+  border-radius: 6px;
+  color: var(--navy);
+  flex: 1 1 14rem;
+  font: 1rem var(--font-title);
+  min-height: 3rem;
+  padding: 0.7rem 0.9rem;
+}
+
+.game-page [hidden] {
+  display: none !important;
+}
+
+.game-error {
+  color: #b91c1c;
+  font-weight: 800;
+}
+
+.game-leaderboard {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(1rem, 2.5vw, 2rem);
+}
+
+.game-leaderboard-heading span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.game-leaderboard h2 {
+  font-size: 1.5rem;
+  margin: 0.4rem 0 1rem;
+}
+
+.game-leaderboard ol {
+  counter-reset: game-rank;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.game-leaderboard li {
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 0.7rem;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.game-leaderboard li::before {
+  content: counter(game-rank, decimal-leading-zero);
+  counter-increment: game-rank;
+  font: 800 0.8rem var(--font-title);
+}
+
+.game-leaderboard li span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.game-leaderboard li strong {
+  font-family: var(--font-title);
+}
+
+@media (max-width: 900px) {
+  .hero-actions {
+    justify-self: start;
+    order: 2;
+    position: static;
+  }
+
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .game-leaderboard {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 1.5rem 0 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-actions,
+  .hero-actions > a {
+    width: 100%;
+  }
+
+  .game-stats strong {
+    font-size: 1.45rem;
+  }
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;

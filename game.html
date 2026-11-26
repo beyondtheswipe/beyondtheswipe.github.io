@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Money Rising | Beyond the Swipe</title>
+    <meta name="description" content="Find the rarest financial literacy answer in seven timed rounds." />
+    <link rel="icon" href="images/logo.png" />
+    <link rel="stylesheet" href="styles.css?v=money-rising" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Beyond the Swipe home"><img src="images/logo-header.png" alt="Beyond the Swipe" width="1016" height="496" /></a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="get-started.html">Get Started</a>
+        <a href="mission.html">Our Mission</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </header>
+    <main class="game-page" data-game data-api-base="https://beyond-the-swipe.liqiangz.workers.dev">
+      <div class="game-layout">
+        <section class="game-main" aria-label="Money Rising game">
+          <div class="game-topline"><span>Beyond the Swipe</span><span>Money Rising</span></div>
+          <div class="game-stats">
+            <div><span>Round</span><strong data-round>0 / 7</strong></div>
+            <div><span>Time</span><strong data-time>25</strong></div>
+            <div><span>Score</span><strong data-score>0</strong></div>
+          </div>
+          <div class="game-stage" aria-hidden="true">
+            <div class="game-altitude"><span>700</span><span>350</span><span>0</span></div>
+            <div class="game-flyer"><img src="https://fonts.gstatic.com/s/e/notoemoji/17.0/1f4b8/72.png" width="72" height="72" alt="" /></div>
+            <div class="game-horizon"></div>
+          </div>
+          <div class="game-prompt-area" aria-live="polite">
+            <p class="game-kicker" data-kicker>Seven rounds. Twenty-five seconds each.</p>
+            <h1 data-prompt>How high can you rise?</h1>
+            <p data-result>Find a plausible answer that few other people would think of.</p>
+            <form class="game-answer-form" data-answer-form hidden>
+              <label class="sr-only" for="game-answer">Your answer</label>
+              <input id="game-answer" data-answer maxlength="100" autocomplete="off" placeholder="Your answer" />
+              <button class="cta-button" type="submit">Submit</button>
+            </form>
+            <form class="game-name-form" data-name-form hidden>
+              <label for="game-name">Leaderboard name</label>
+              <input id="game-name" data-name maxlength="24" autocomplete="nickname" placeholder="Your name" />
+              <button class="cta-button" type="submit">Join top ten</button>
+            </form>
+            <button class="cta-button" type="button" data-start>Start game</button>
+            <button class="outline-button" type="button" data-restart hidden>Play again</button>
+            <p class="game-error" data-error role="alert" hidden></p>
+          </div>
+        </section>
+        <aside class="game-leaderboard" aria-labelledby="game-leaderboard-title">
+          <div class="game-leaderboard-heading"><span>Top ten</span><h2 id="game-leaderboard-title">Leaderboard</h2></div>
+          <ol data-leaderboard><li>Loading scores...</li></ol>
+        </aside>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <p>Stay connected with Beyond the Swipe.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/beyond.the.swipe_">@beyond.the.swipe_</a>
+        <a href="mailto:beyondtheswipehelp@gmail.com">beyondtheswipehelp@gmail.com</a>
+      </div>
+    </footer>
+    <script src="game.js?v=money-rising" defer></script>
+    <script src="site-stats.js?v=visit-counter" defer></script>
+  </body>
+</html>
